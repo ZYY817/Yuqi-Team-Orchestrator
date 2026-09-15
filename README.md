@@ -1,40 +1,34 @@
-# 🎛️ Yuqi Team Orchestrator
+<div align="center">
 
-> Multi-agent orchestration plugin for DeepSeek Harness — one controller, a managed team of child agents.
+# Yuqi Team Orchestrator
+
+**Multi-agent orchestration plugin for DeepSeek Harness** — one controller, a managed team of child agents.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Node](https://img.shields.io/badge/node-%3E%3D24-brightgreen.svg)](package.json)
 [![Version](https://img.shields.io/badge/version-0.0.1-orange.svg)](package.json)
 
-[中文](README.zh.md) · [📖 User Guide](docs/USER_GUIDE.md) · [🗺️ Feature Status](docs/FEATURES.md) · [📋 Project Overview (中文)](docs/PROJECT_OVERVIEW.zh-CN.md)
+[English](README.md) · [中文](README.zh.md)
+
+</div>
 
 ---
 
-## 🤔 What Problem Does It Solve
+## Overview
 
-Yuqi Team Orchestrator `0.0.1` is an independent DeepSeek Harness **Developer Preview** plugin. It doesn't solve "how to spawn more agents" — it solves:
+Yuqi Team Orchestrator `0.0.1` is an independent DeepSeek Harness **Developer Preview** plugin. A controller turns one user objective into a durable task graph, dispatches direct child Agents, preserves state and evidence, handles routine decisions, and reports the final result in the controller conversation — no need to enter child sessions for routine confirmations.
 
-- 🔍 Why delegated tasks stall, drift, or return nothing without anyone noticing
-- ✅ How the controller knows whether a child's result actually meets acceptance criteria
-- 🧩 How complex goals are decomposed with context and dependencies passed along
-- 💰 Which tasks deserve a strong model and which can use a cheaper one
-- 🛡️ How failures retry within bounds and escalate to humans instead of looping forever
+## Features
 
-A controller turns one user objective into a durable task graph, dispatches direct child Agents, preserves state and evidence, handles routine decisions, and reports the final result in the controller conversation — **no need to enter child sessions for routine confirmations**.
+- **Orchestration** — up to 100 tasks per Team; concurrency ceiling 1–100; dependency graph + `fileScope` conflict-aware scheduling; child sessions created only at dispatch.
+- **Model routing** — inherit controller, fixed exact route, or experimental automatic routing by `quick`/`standard`/`critical` tiers. Provider scope defaults to `controller-only`; cross-Provider requires a user allowlist.
+- **Review** — `off` / `manual` / `quality-gate` (default `manual`); automatic rework defaults to 2 rounds, capped at 3.
+- **Verification evidence** — Host structured checks (build / test / interface / screenshot) yield `passed` / `failed` / `inconclusive`; a child's prose claim cannot replace evidence.
+- **Control & recovery** — pause, resume, cancel, retry, model switch, manual takeover, restart reconciliation; the event stream is authoritative and old attempts/evidence are preserved; controller-less recovery is fail-closed.
+- **Team UI** — controller/child navigation, status and evidence display, settings, decision handling, reversible archive; Chinese & English.
+- **Project knowledge** — optional `.yuqi-team/index.json` index for progress, decisions, pitfalls, and conventions.
 
-## ✨ Available in 0.0.1
-
-| Capability | Description |
-|---|---|
-| 📋 **Orchestration** | Up to 100 tasks per Team; concurrency 1–100; dependency graph + `fileScope` conflict-aware scheduling; child sessions created only at dispatch |
-| 🧠 **Model Routing** | Inherit controller, fixed exact route, or experimental automatic routing by `quick`/`standard`/`critical` tiers; Provider scope defaults to `controller-only` |
-| 🔎 **Review** | `off` / `manual` / `quality-gate` (default `manual`); automatic rework 2 rounds default, capped at 3 |
-| 📊 **Verification** | Host structured checks (build / test / interface / screenshot) yield `passed` / `failed` / `inconclusive`; a child's prose claim cannot replace evidence |
-| 🎮 **Control & Recovery** | Pause, resume, cancel, retry, model switch, manual takeover, restart reconciliation; event stream is authoritative, old attempts and evidence preserved |
-| 🖥️ **Team UI** | Controller/child navigation, status and evidence display, settings, decision handling, reversible archive; Chinese & English |
-| 📚 **Project Knowledge** | Optional `.yuqi-team/index.json` index for progress, decisions, pitfalls, and conventions |
-
-## 🚀 Install and Use
+## Quick start
 
 Requires Node.js 24, pnpm, and a compatible DeepSeek Harness build.
 
@@ -47,11 +41,19 @@ pnpm run preset:install -- --dsh-home <your DSH_HOME>
 
 Restart the Harness Host → create a blank session → select **yuqi团队** in the preset picker → describe the objective and request Team execution.
 
-> ⚠️ Only one Host process per storage directory; use separate directories for test and production.
+> Only one Host process per storage directory; use separate directories for test and production.
 
-See the [📖 User Guide](docs/USER_GUIDE.md) for details.
+## Documentation
 
-## 🔧 Development Verification
+| Document | Description |
+|---|---|
+| [User Guide](docs/USER_GUIDE.md) | Complete tutorial — install, configure, run, and recover Teams |
+| [使用教程](docs/USER_GUIDE.zh-CN.md) | 中文版完整教程 |
+| [Feature Status](docs/FEATURES.md) | What 0.0.1 implements and what is planned next |
+| [功能实践情况](docs/FEATURES.zh-CN.md) | 中文功能现状与路线图 |
+| [Project Overview](docs/PROJECT_OVERVIEW.zh-CN.md) | 项目介绍与架构说明（中文） |
+
+## Development
 
 ```sh
 pnpm run typecheck    # Type checks
@@ -60,7 +62,7 @@ pnpm run build        # Build artifacts
 pnpm run check        # Aggregate release gate
 ```
 
-## 🏗️ Architecture Boundary
+Architecture boundary:
 
 ```text
 host/adapters → application → domain
@@ -69,15 +71,10 @@ client → read-only Projection and commands
 
 `domain` does not depend on Harness, Cordis, Node I/O, Git, network, or UI; only `host/harness` integrates Harness public APIs.
 
-## ⚠️ Current Boundaries
+## Current boundaries
 
-Local single-user Developer Preview. Not included:
+Local single-user Developer Preview. Not included: hard budget gates or monetary accounting, multi-user collaboration/cloud sync, automatic Git merge/push/deploy, and a complete E2E guarantee across every Provider/credential/network combination.
 
-- 💵 Hard budget gates or monetary accounting
-- 👥 Multi-user collaboration / cloud sync / multi-machine scheduling
-- 🚀 Automatic Git merge / push / deploy
-- 🌐 Complete E2E guarantee across every Provider / credential / network combination
+## License
 
-## 📄 License
-
-MIT
+[MIT](LICENSE)

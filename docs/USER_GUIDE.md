@@ -1,8 +1,8 @@
-# 📖 Yuqi Team Orchestrator User Guide
+# Yuqi Team Orchestrator User Guide
 
 For first-time users of `0.0.1` (Developer Preview). You state your goal in the controller conversation; child Agents execute delegated work, and progress, blockers, review outcomes, and final results return to the controller — no need to enter child sessions for routine confirmations.
 
-## 📦 1. Install
+## 1. Install
 
 Requires Node.js 24, pnpm, and a compatible DeepSeek Harness build.
 
@@ -26,7 +26,7 @@ dsh plugin --profile <profile> add ./yuqi-team-orchestrator-0.0.1.tgz
 pnpm --dir "<your DSH_HOME>/profiles/<profile>" exec yuqi-team-install-preset --dsh-home "<your DSH_HOME>"
 ```
 
-### 🔍 Pre-install check (optional)
+### Pre-install check (optional)
 
 Run the sidecar preflight against the official installation root to verify Host storage compatibility:
 
@@ -36,7 +36,7 @@ node scripts/check-host-compatibility.mjs --sidecar "<official-install-root>"
 
 > **Note**: only one Host process per storage directory. Test and production must use separate directories.
 
-## 🚀 2. Start a Team
+## 2. Start a Team
 
 1. Create a blank session.
 2. Select **yuqi团队** in the preset picker.
@@ -46,7 +46,7 @@ node scripts/check-host-compatibility.mjs --sidecar "<official-install-root>"
 
 An idle ordinary conversation can be converted via **Turn into a Team task** in its header — the original conversation stays unchanged.
 
-## ⚙️ 3. Team settings
+## 3. Team settings
 
 Open the lower-left Team entry and configure **Team defaults**:
 
@@ -61,19 +61,19 @@ Open the lower-left Team entry and configure **Team defaults**:
 
 Settings apply only to Teams started afterwards; they do not hot-update existing Teams.
 
-## ▶️ 4. During execution
+## 4. During execution
 
-### 📋 Scheduling
+### Scheduling
 
 - The controller decomposes the goal into a task graph and dispatches by dependency and `fileScope` (planned change areas); conflicting scopes do not write concurrently.
 - Child sessions are created only when a task actually dispatches.
 - Running tasks accept follow-up messages; changes to completed tasks go through `yuqi_team_revise`, which creates a linked new task while preserving the old result.
 
-### 📁 File scope
+### File scope
 
 `fileScope` is a planning contract for conflict prediction, file leases, recovery boundaries, and UI display — not a write sandbox. A child may touch related files and must report the actual changes.
 
-### 🔎 Review
+### Review
 
 - `off`: no independent reviewer.
 - `manual` (default): runs only when the controller requests it.
@@ -81,11 +81,11 @@ Settings apply only to Teams started afterwards; they do not hot-update existing
 
 Review findings and decisions return to the controller.
 
-### 📚 Project memory
+### Project memory
 
 `.yuqi-team/index.json` is an optional lightweight project index: overall progress, architecture decisions, pitfalls, conventions, and document links. The controller reads/writes it via `yuqi_team_knowledge`; the panel supports refresh, per-item delete, and category clear. **Never store credentials or secrets in it.**
 
-## 🎮 5. Control and recovery
+## 5. Control and recovery
 
 - **Pause**: stop new dispatch, let in-flight work settle.
 - **Resume**: restart scheduling from paused.
@@ -94,11 +94,11 @@ Review findings and decisions return to the controller.
 - **Manual takeover**: pause the Team, confirm takeover, edit, then return to the controller.
 - **Needs recovery**: the panel explains which task outcome is uncertain; use **Recover and continue** to recheck facts and proceed.
 
-## 📊 6. Verification evidence
+## 6. Verification evidence
 
 When a task declares Host-supported checks (pnpm build/typecheck, Vitest JSON, etc.), structured evidence yields `passed` / `failed` / `inconclusive`. A child Agent's prose claim cannot replace evidence, and unavailable evidence is never converted into success.
 
-## 📦 7. Archive and uninstall
+## 7. Archive and uninstall
 
 - The management center archives/restores Team entries (reversible hiding; session history is not deleted).
 - Running Teams cannot be archived; archiving is not cancellation.
@@ -110,10 +110,10 @@ pnpm run preset:install -- --remove --dsh-home <your DSH_HOME>
 dsh plugin --profile <profile> remove yuqi-team-orchestrator
 ```
 
-## ⚠️ 8. Current boundaries
+## 8. Current boundaries
 
 `0.0.1` is a local single-user Developer Preview. Not included: hard budget gates or monetary accounting, multi-user collaboration/cloud sync, automatic Git merge/push/deploy, and a complete E2E guarantee across every Provider/credential/network combination.
 
 ---
 
-[中文](./USER_GUIDE.zh-CN.md) · [🗺️ Feature status](./FEATURES.md) · [📋 Project overview](./PROJECT_OVERVIEW.zh-CN.md)
+[中文](USER_GUIDE.zh-CN.md) · [Feature status](FEATURES.md) · [Project overview](PROJECT_OVERVIEW.zh-CN.md)
