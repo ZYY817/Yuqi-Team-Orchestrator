@@ -1,0 +1,25 @@
+# Test-only overlay: keep the production adapter and all real Host/Agent rows,
+# but route provider traffic to the isolated local fixture.
+- id: session-title-llm
+  disabled: true
+
+# Keep the real directory-picker contract while selecting its in-browser
+# implementation. The production auto row resolves to the native Windows
+# chooser on this host, which a browser E2E cannot drive or observe.
+- id: directory-picker
+  disabled: true
+
+- insert:
+    - id: directory-picker-browse
+      name: '@deepseek-ai/dsh-host-directory-picker-browse'
+    - id: ui-directory-picker-browse
+      name: '@deepseek-ai/dsh-client-ui-directory-picker-browse'
+
+- id: llm-deepseek
+  config:
+    apiKeyEnv: DSH_E2E_PROVIDER_KEY
+    baseURL: !!js process.env.DSH_E2E_PROVIDER_BASE_URL
+    thinking: disabled
+    reasoningEffort: off
+    maxTokens: 4096
+    streamIdleTimeoutMs: 120000

@@ -1,0 +1,54 @@
+/** Stable application failures exposed by the orchestrator service. */
+
+export type YuqiOrchestratorErrorCode =
+  | 'CONTROLLER_BUSY'
+  | 'HOST_SESSION_INCOMPATIBLE'
+  | 'CONTROLLER_REQUIRES_RECONCILIATION'
+  | 'TEAM_MISMATCH'
+  | 'TEAM_NOT_RUNNING'
+  | 'CONTROL_OPERATION_CONFLICT'
+  | 'CONTROL_NOT_ALLOWED'
+  | 'CONTROL_RUNTIME_UNCERTAIN'
+  | 'RETRY_NOT_ALLOWED'
+  | 'RECONCILIATION_NOT_REQUIRED'
+  | 'RECONCILIATION_STALE'
+  | 'RECONCILIATION_NOT_ALLOWED'
+  | 'RESOLUTION_NOT_ALLOWED'
+  | 'RESOLUTION_STALE'
+  | 'RESOLUTION_UNSAFE'
+  | 'VERIFICATION_NOT_ALLOWED'
+  | 'VERIFICATION_OPERATION_CONFLICT'
+  | 'VERIFICATION_PERSISTENCE_FAILED'
+  | 'TASK_NOT_RUNNABLE'
+  | 'SCHEDULE_NOT_RUNNABLE'
+  | 'STALE_SCHEDULE'
+  | 'INVALID_BATCH'
+  | 'FILE_LEASE_CONFLICT'
+  | 'FIXED_MODEL_INVALID'
+  | 'FIXED_MODEL_UNAVAILABLE'
+  | 'GIT_PROJECT_UNSUPPORTED'
+  | 'GIT_COMMAND_FAILED'
+  | 'UNSAFE_WORKSPACE_PATH'
+  | 'WORKSPACE_CONFLICT'
+  | 'WORKSPACE_REQUIRES_RECONCILIATION'
+  | 'WORKSPACE_PERSISTENCE_FAILED'
+  | 'EXECUTION_GATE_REJECTED'
+  | 'BUDGET_BLOCKED'
+  | 'INTENT_PERSISTENCE_FAILED'
+  | 'CHILD_ADMISSION_FAILED'
+  | 'ADMISSION_PERSISTENCE_FAILED'
+  | 'EARLY_END_OVERFLOW'
+  | 'CHILD_ID_COLLISION'
+  | 'SETTLEMENT_PERSISTENCE_FAILED'
+  | 'SERVICE_DISPOSED'
+
+/** Application error with a safe public message and optional original cause. */
+export class YuqiOrchestratorError extends Error {
+  readonly code: YuqiOrchestratorErrorCode
+
+  constructor(code: YuqiOrchestratorErrorCode, message: string, options?: ErrorOptions) {
+    super(message, options)
+    this.name = 'YuqiOrchestratorError'
+    this.code = code
+  }
+}

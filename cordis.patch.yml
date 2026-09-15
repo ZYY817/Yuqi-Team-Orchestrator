@@ -1,0 +1,5 @@
+# Out-of-tree profile layer for DeepSeek Harness. Package metadata loads the
+# Client bundle; this patch mounts the Host service that owns durable Team state.
+- insert:
+    - id: yuqi-team-orchestrator
+      name: 'yuqi-team-orchestrator'

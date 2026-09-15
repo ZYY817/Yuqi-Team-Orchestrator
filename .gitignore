@@ -1,0 +1,33 @@
+node_modules/
+lib/
+
+# Build, test, coverage, and browser artifacts
+coverage/
+coverage-*/
+.coverage-*/
+tests/e2e/.artifacts/
+.playwright-cli/
+.tmp-vitest/
+branch-report.json
+
+# Local logs and transient files
+*.log
+*.tmp
+*.temp
+.harness*.exit
+.full-unit.exit
+
+# Local credentials and generated publishing drafts
+.env
+.env.*
+!.env.example
+*.tsbuildinfo
+/docs/article-assets/
+/[0-9][0-9]-*.png
+/temp-inspect.png
+
+# Editor and operating-system metadata
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
