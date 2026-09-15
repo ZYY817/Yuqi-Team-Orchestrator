@@ -6,6 +6,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Node](https://img.shields.io/badge/node-%3E%3D24-brightgreen.svg)](package.json)
+[![Harness](https://img.shields.io/badge/DeepSeek%20Harness-0.1.x-blueviolet.svg)](package.json)
 [![Version](https://img.shields.io/badge/version-0.0.1-orange.svg)](package.json)
 
 [English](README.md) · [中文](README.zh.md)
@@ -30,7 +31,7 @@ Yuqi Team Orchestrator `0.0.1` 是独立的 DeepSeek Harness **Developer Preview
 
 ## 快速开始
 
-需要 Node.js 24、pnpm 和兼容的 DeepSeek Harness 构建。
+需要 **Node.js 24**、**pnpm** 和 **DeepSeek Harness `>=0.1.1-rc.2 <0.2.0`**。sidecar 存储契约已对官方 `0.1.2-rc.1` 安装验证通过；`verifiedOfficialRelease` 仍为 `null`，即尚未声明完整官方发行版验收。
 
 ```sh
 pnpm install

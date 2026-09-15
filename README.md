@@ -6,6 +6,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Node](https://img.shields.io/badge/node-%3E%3D24-brightgreen.svg)](package.json)
+[![Harness](https://img.shields.io/badge/DeepSeek%20Harness-0.1.x-blueviolet.svg)](package.json)
 [![Version](https://img.shields.io/badge/version-0.0.1-orange.svg)](package.json)
 
 [English](README.md) · [中文](README.zh.md)
@@ -30,7 +31,7 @@ Yuqi Team Orchestrator `0.0.1` is an independent DeepSeek Harness **Developer Pr
 
 ## Quick start
 
-Requires Node.js 24, pnpm, and a compatible DeepSeek Harness build.
+Requires **Node.js 24**, **pnpm**, and **DeepSeek Harness `>=0.1.1-rc.2 <0.2.0`**. The sidecar storage contract is verified against the official `0.1.2-rc.1` install; `verifiedOfficialRelease` remains `null`, meaning full official-release acceptance is not yet claimed.
 
 ```sh
 pnpm install

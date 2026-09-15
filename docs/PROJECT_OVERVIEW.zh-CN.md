@@ -21,7 +21,7 @@ Yuqi Team Orchestrator `0.0.1` 是面向 DeepSeek Harness 的独立多代理编�
 
 ## 快速开始
 
-需要 Node.js 24、pnpm 和兼容的 DeepSeek Harness 构建。
+需要 Node.js 24、pnpm 和 **DeepSeek Harness `>=0.1.1-rc.2 <0.2.0`**（sidecar 存储契约已对官方 `0.1.2-rc.1` 验证通过）。
 
 ```sh
 pnpm install

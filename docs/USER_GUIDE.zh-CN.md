@@ -4,7 +4,9 @@
 
 ## 1. 安装
 
-需要 Node.js 24、pnpm，以及兼容的 DeepSeek Harness 构建。
+需要 **Node.js 24**、**pnpm**，以及 **DeepSeek Harness `>=0.1.1-rc.2 <0.2.0`**。
+
+sidecar 存储契约已对官方 `0.1.2-rc.1` 安装验证通过；完整官方发行版验收（`verifiedOfficialRelease`）仍为 `null`。
 
 ### 从源码安装
 

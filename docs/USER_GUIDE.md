@@ -4,7 +4,9 @@ For first-time users of `0.0.1` (Developer Preview). You state your goal in the 
 
 ## 1. Install
 
-Requires Node.js 24, pnpm, and a compatible DeepSeek Harness build.
+Requires **Node.js 24**, **pnpm**, and **DeepSeek Harness `>=0.1.1-rc.2 <0.2.0`**.
+
+The sidecar storage contract is verified against the official `0.1.2-rc.1` install; full official-release acceptance (`verifiedOfficialRelease`) remains `null`.
 
 ### From source
 
